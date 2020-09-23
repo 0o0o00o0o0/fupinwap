@@ -311,11 +311,11 @@ export default {
   left: .2rem;
 }
 /deep/.van-nav-bar__text{
-  color: #48B440;
+  color: rgb(211, 55, 42);
   position: relative;
   top: 1px;
 }
 /deep/.van-nav-bar .van-icon{
-  color: #48B440;
+  color: rgb(211, 55, 42);
 }
 </style>

@@ -29,7 +29,7 @@ export default{
 	"URL_ACCOUNTINFO_FIND_BYOPENID":"/accountinfo/findAccountInfoByOpenid",
 
 	"URL_ORDER_ADD":"/orderinfo/add",
-	"URL_ORDER_UPDATE":"/orderinfo/update",
+	"URL_ORDER_UPDATE":"/orderinfo/cancelForOrder",
 	"URL_ORDER_DELETEBYID":"/orderinfo/deleteById",
 	"URL_ORDER_FINDBYID":"/orderinfo/findById",
 	"URL_ORDER_FINDBYPAGE":"/orderinfo/findByPage",

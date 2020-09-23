@@ -160,7 +160,7 @@ export default {
 .login-btn{
   width: 18rem;
   height: 35px;
-  border: 1px solid #48B440;
+  border: 1px solid rgb(211, 55, 42);
   border-radius: 15px;
   margin: 13px 0px 3px 0px;
   background-color: #fff;

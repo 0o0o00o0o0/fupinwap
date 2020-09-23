@@ -12,7 +12,9 @@
         <div class="image"><img src="../../assets/images/fuBag.png" alt=""></div>
         <div class="price-item">
         <div class="mt15">
-          <div class="price-wrap"><img src="../../assets/images/fu.png" alt=""><span>{{accountInfo.accountBalance}}</span></div>
+          <div class="price-wrap">
+            <!-- <img src="../../assets/images/fu.png" alt=""> -->
+            ￥<span>{{accountInfo.accountBalance}}</span></div>
           <!-- <span class="total-value">( 福包总额: <img src="../../assets/images/fu.png">{{accountInfo.accountValue}} )</span> -->
           <div class="propmt f14">余额</div>
         </div>
@@ -216,7 +218,7 @@ export default {
 }
 .weixin-pay-money-btn{
   display: block;
-  background-color: #48B440;
+  background-color: rgb(211, 55, 42);
   border-radius: 22px;
   border: none;
   width: 22.1875rem;
@@ -246,11 +248,11 @@ export default {
   left: .2rem;
 }
 /deep/.van-nav-bar__text{
-  color: #48B440;
+  color: rgb(211, 55, 42);
   position: relative;
   top: 1px;
 }
 /deep/.van-nav-bar .van-icon{
-  color: #48B440;
+  color: rgb(211, 55, 42);
 }
 </style>

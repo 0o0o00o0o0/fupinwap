@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import navContainer from '@/components/navContainer/navContainer'
 import index from '@/components/index/index'
+import fupin from '@/components/index/fupin'
+import classi from '@/components/classi/classi'
 import shoppingCart from '@/components/shoppingCart/shoppingCart'
 import personal from '@/components/personal/personal'
 import myCard from '@/components/myCard/myCard'
@@ -23,7 +25,14 @@ import faceValueItem from '@/components/myFuBag/faceValueItem'
 import accountRecord from '@/components/myFuBag/accountRecord'
 import festival from '@/components/product/festival'
 import recordList from '@/components/myFuBag/recordList'
+import comList from '@/components/comList/comList'
 import code from '@/components/login/code'
+import evaluate from '@/components/evaluate/evaluate'
+import afterSale from '@/components/afterSale/afterSale'
+import active from '@/components/active/active'
+import video from '@/components/video/video';
+import evaluat from '@/components/order/evaluate'
+import fastVue from '@/components/fast/fastv'
 Vue.use(Router)
 
 export default new Router({
@@ -33,17 +42,31 @@ export default new Router({
       name: 'navContainer',
       component: navContainer,
       redirect: '/navContainer/login',
-      children:[
+      children: [
         {
           path: '/navContainer/login',
           name: 'login',
           component: login
         },
-      	{
-      		path: '/navContainer/index',
-      		name: 'index',
-      		component: index
-      	},
+        {
+          path: '/navContainer/index',
+          name: 'index',
+          component: index
+        },
+        // {
+        // 	path: '/navContainer/classi',
+        // 	name: 'classi',
+        // 	component: classi
+        // },
+        {
+          path: '/navContainer/fupin',
+          name: 'fupin',
+          component: fupin
+        },   {
+          path: '/navContainer/video',
+          name: 'video',
+          component: video
+        },
         {
           path: '/navContainer/shoppingCart',
           name: 'shoppingCart',
@@ -68,8 +91,25 @@ export default new Router({
           path: '/orderList',
           name: 'orderList',
           component: orderList
-        },
+        }, {
+          path: '/comList',
+          name: 'comList',
+          component: comList
+        }, {
+          path: '/evaluate',
+          name: 'evaluate',
+          component: evaluate
+        }, {
+          path: '/afterSale',
+          name: 'afterSale',
+          component: afterSale
+        }
       ]
+    },
+    {
+      path: '/evaluat',
+      name: 'evaluat',
+      component: evaluat
     },
     {
       path: '/addCard',
@@ -150,6 +190,16 @@ export default new Router({
       path: '/code',
       name: 'code',
       component: code
+    },
+    {
+      path: '/active',
+      name: 'active',
+      component: active
+    },
+    {
+      path: '/fast',
+      name: 'fast',
+      component: fastVue
     },
   ]
 })

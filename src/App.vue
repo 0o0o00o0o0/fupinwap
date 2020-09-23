@@ -19,7 +19,9 @@ export default {
 
     if (!this.openId) {
       this.code = this.getQueryString("code");
-        console.log(111)
+      if (this.$route.path === "/active" || this.$route.path === "/fast") {
+        return;
+      }
       if (this.code) {
         // this.getOpenId();
       } else {
@@ -30,7 +32,7 @@ export default {
   methods: {
     mygets() {
       var redirect_urls = encodeURIComponent(
-        "http://wap.chhtf.com/#/navContainer/index"
+        "http://wap.chhtf.com/#/" + this.$route.path
       );
       var urls =
         "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx93b723928c7e335b&redirect_uri=" +
@@ -116,5 +118,8 @@ body {
 .slide-left-leave-active,
 .slide-right-enter {
   opacity: 0;
+}
+.hhhhh .van-dialog__message{
+  font-size: 16px
 }
 </style>

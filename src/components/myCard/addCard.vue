@@ -167,7 +167,7 @@ export default {
   width: 22.1875rem;
   height: 2.75rem;
   margin: 0 auto;
-  background-color: #48B440;
+  background-color: rgb(211, 55, 42);
   font-size: 1.0625rem;
   color: #fff;
   text-align: center;
@@ -175,11 +175,11 @@ export default {
   border-radius: 5px;
 }
 /deep/.van-nav-bar__text{
-  color: #48B440;
+  color: rgb(211, 55, 42);
   position: relative;
   top: 1px;
 }
 /deep/.van-nav-bar .van-icon{
-  color: #48B440;
+  color: rgb(211, 55, 42);
 }
 </style>

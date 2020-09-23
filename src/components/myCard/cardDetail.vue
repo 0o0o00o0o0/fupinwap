@@ -14,8 +14,14 @@
         </div>
         <div class="card-info">
           <div class="item clearfix">
-            <span>总福值：<img src="../../assets/images/fu.png" alt="">{{cardInfo.cardValue}}</span>
-            <span class="pull-right">余额：<img src="../../assets/images/fu.png" alt="">{{cardInfo.cardBalance}}</span>
+            <span>总福值：
+              <!-- <img src="../../assets/images/fu.png" alt=""> -->
+              ￥
+              {{cardInfo.cardValue}}</span>
+            <span class="pull-right">余额：
+              <!-- <img src="../../assets/images/fu.png" alt=""> -->
+              ￥
+              {{cardInfo.cardBalance}}</span>
         </div>
           <div class="item"><span>有效日期：<span class="f12">{{cardInfo.deadline}} ~ {{cardInfo.startDate}}</span></span></div>
         </div>
@@ -33,7 +39,9 @@
         <div class="confirm-pay-wrap">
           <div class="title"><van-icon name="cross" @click="toFuBagPopup=false"/>转入福包</div>
           <div class="bag-wrap">
-            <div class="balance"><img src="../../assets/images/fu.png" alt="">135</div>
+            <div class="balance">
+              <!-- <img src="../../assets/images/fu.png" alt=""> -->
+              ￥135</div>
             <div class="server-price">额外扣除1.33福币服务费</div>
           </div>
           <div>
@@ -230,7 +238,7 @@ export default {
   width: 22.1875rem;
   height: 2.75rem;
   margin: 0.9375rem auto;
-  background-color: #48B440;
+  background-color: rgb(211, 55, 42);
   font-size: 1.0625rem;
   color: #fff;
   text-align: center;
@@ -309,19 +317,19 @@ export default {
   width: 15.1875rem;
   height: 2.6875rem;
   margin: 1.4375rem auto;
-  background-color: #48B440;
+  background-color: rgb(211, 55, 42);
   color: #fff;
   font-size: 1.0625rem;
   border: none;
   border-radius: 2px;
 }
 /deep/.van-nav-bar__text{
-  color: #48B440;
+  color: rgb(211, 55, 42);
   position: relative;
   top: 1px;
 }
 /deep/.van-nav-bar .van-icon{
-  color: #48B440;
+  color: rgb(211, 55, 42);
 }
 .find-account-list{
   display: block;

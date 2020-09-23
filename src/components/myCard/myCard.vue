@@ -195,8 +195,8 @@ export default {
   margin: 0px 0.625rem;
   height: 2.75rem;
   border-radius: 5px;
-  border: 1px solid #48B440;
-  color: #48B440;
+  border: 1px solid rgb(211, 55, 42);
+  color: rgb(211, 55, 42);
   font-size: 1.0625rem;
   background-color: transparent;
   cursor: pointer;
@@ -208,11 +208,11 @@ export default {
   margin-right: 0.1875rem;
 }
 /deep/.van-nav-bar__text{
-  color: #48B440;
+  color: rgb(211, 55, 42);
   position: relative;
   top: 1px;
 }
 /deep/.van-nav-bar .van-icon{
-  color: #48B440;
+  color: rgb(211, 55, 42);
 }
 </style>

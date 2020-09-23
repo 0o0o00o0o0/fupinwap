@@ -30,7 +30,14 @@ Vue.use(Lazyload);
 Vue.use(Mint);
 // Vue.component(Swipe.name, Swipe);
 // Vue.component(SwipeItem.name, SwipeItem);
-
+// router.beforeEach((to, from, next) => {
+//   if (to.fullPath == '/navContainer/fupin' || to.fullPath == '/active') {
+//     document.title = "长沙农商银行扶贫商城"
+//   } else {
+//     document.title = '';//"城惠添福商城"
+//   }
+//   next()
+// })
 new Vue({
   el: '#app',
   router,

@@ -89,10 +89,10 @@ p{
     text-align: right;
 }
 .van-dialog__confirm, .van-dialog__confirm:active{
-    color: #35AB54!important;
+    color: rgb(211, 55, 42)!important;
 }
 .van-radio .van-icon-checked{
-    color: #35AB54!important;
+    color: rgb(211, 55, 42)!important;
 }
 .van-field .van-cell__title{
     text-align: left!important;
@@ -102,7 +102,7 @@ p{
     text-align: left;
 }
 .van-picker__cancel, .van-picker__confirm{
-    color: #35AB54!important;
+    color: rgb(211, 55, 42)!important;
 }
 .van-collapse-item__content{
   padding: 0!important;
@@ -111,8 +111,12 @@ p{
   width: 100%!important;
 }
 .van-tabs__line{
-    background-color: #35AB54!important;
+    background-color: rgb(211, 55, 42)!important;
 }
 .pick-bg{
     background-color: #FCFAF7;
+}
+.van-button--primary {
+  color: #fff;
+  border: 1px solid rgb(211, 55, 42);
 }

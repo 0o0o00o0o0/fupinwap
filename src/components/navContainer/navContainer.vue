@@ -31,6 +31,9 @@
       <van-tabbar-item icon="shop">
         首页
       </van-tabbar-item>
+       <!-- <van-tabbar-item icon="apps-o">
+        分类
+      </van-tabbar-item> -->
       <van-tabbar-item icon="cart-o" :info="cartProNumber" v-if="cartProNumber>0">
         购物车
       </van-tabbar-item>
@@ -91,11 +94,13 @@ export default {
       var self = this;
       sessionStorage.setItem('ACTIVE_MENU_INDEX',index);
       if(index == 0){
-        self.$router.push({name:'index'});
+        self.$router.push({name:'fupin'});
       }else if(index == 1){
+        // self.$router.push({name:'classi'});
         self.$router.push({name:'shoppingCart'});
       }else if(index == 2){
         self.$router.push({name:'personal'});
+      }else if(index == 3){
       }
     },
     getCartNumber(){
@@ -170,10 +175,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .van-tabbar-item--active{
-  color: #48B440;
+  color: rgb(211, 55, 42);
 }
 .text-active{
-  color: #48B440;
+  color: rgb(211, 55, 42);
 }
 .van-tabbar-item__icon > i{
   font-size: 25px!important;

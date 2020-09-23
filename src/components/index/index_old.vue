@@ -129,7 +129,9 @@
                           >
                           <div class="image"><img :src="imgServer+item.coverImage" alt=""></div>
                           <div class="title">{{item.commodityTitle}}</div>
-                          <div class="price"><img src="../../assets/images/fu.png" alt=""><span>{{item.displayPrice}}</span></div>
+                          <div class="price">
+                            <!-- <img src="../../assets/images/fu.png" alt=""> -->￥
+                          <span>{{item.displayPrice}}</span></div>
                         </div>
                     </div>
                   </van-list>

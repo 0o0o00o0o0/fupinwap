@@ -29,7 +29,9 @@
             <div class="title">
               {{item.commoditySubtitle}}
             </div>
-            <span class="price"><em><img src="../../assets/images/fu.png" alt=""></em><span>{{item.displayPrice}}</span></span>
+            <span class="price"><em>
+              <!-- <img src="../../assets/images/fu.png" alt=""> -->
+              ￥</em><span>{{item.displayPrice}}</span></span>
             <div class="fu-ping" v-show="item.commodityMark == '2'">
               <span class="image"><img src="../../assets/images/fuping.png" alt=""></span><span class="title">扶贫</span>
             </div>
@@ -273,7 +275,7 @@ export default {
 }
 .product-item .fu-ping .title{
   font-size: 12px;
-  color: #48B440;
+  color: rgb(211, 55, 42);
   text-align: center;
   display: block;
   transform: scale(.8);
@@ -337,7 +339,7 @@ export default {
   top: 4px;
   width: 5px;
   height: 80%;
-  background-color: #48B440;
+  background-color: rgb(211, 55, 42);
   border-radius: 3px;
 }
 .product-title-img{
