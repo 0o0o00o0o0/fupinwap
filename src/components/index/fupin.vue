@@ -360,7 +360,7 @@ export default {
     this.openId = localStorage.getItem("openId");
     this.openId = this.openId == "null" ? null : this.openId;
     this.openId = this.openId == "undefined" ? undefined : this.openId;
-
+    sessionStorage.setItem('temporary','')
     if (!this.openId) {
       this.code = this.getQueryString("code");
       if (this.code) {

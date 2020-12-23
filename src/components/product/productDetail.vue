@@ -593,6 +593,7 @@ export default {
               pageSource: "buy",
               productId: this.productId,
               orderType: this.$route.query.orderType,
+              phone:this.$route.query.phone
             },
           });
         }

@@ -577,18 +577,30 @@ export default {
       params.orderInfo.addressDetail = this.addressInfo.addressDetail || "";
       params.orderInfo.phone = this.addressInfo.phone || "";
       params.orderInfo.orderType = +(this.$route.query.orderType || 0);
+      params.orderInfo.phone = this.$route.query.phone;
       this.$route.query.orderType &&
         this.$route.query.orderType == 3 &&
         sessionStorage.getItem("phone") &&
         (params.orderInfo.phone = sessionStorage.getItem("phone"));
       params.orderInfo.shoppingItemList = this.getShoppingItemList();
-      self.$axios
+      this.$axios
         .post({
-          url:
-            this.$route.query.orderType == 3
-              ? "/orderinfo/addGiftOrder"
-              : self.API_KEY.URL_ORDER_ADD,
-          data: params,
+          url: "/giftlist/getGiftAuthByPhone",
+          data: { phone: this.$route.query.phone },
+        })
+        .then((res) => {
+          if (res.data.record) {
+            return self.$axios.post({
+              url:
+                this.$route.query.orderType == 3
+                  ? "/orderinfo/addGiftOrder"
+                  : self.API_KEY.URL_ORDER_ADD,
+              data: params,
+            });
+          } else {
+            this.$toast("礼包已经领取");
+            return Promise.reject({});
+          }
         })
         .then(function (json) {
           if (json.data.record) {

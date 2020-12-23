@@ -131,7 +131,7 @@ export default {
     goToProductDetail(id) {
       this.$router.push({
         name: "productDetail",
-        query: { productId: id, orderType: this.$route.query.orderType },
+        query: { productId: id, orderType: this.$route.query.orderType,phone:this.$route.query.phone },
       });
     },
   },
