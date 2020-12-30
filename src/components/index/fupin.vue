@@ -20,7 +20,12 @@
             分类
           </div>
         </div> -->
-
+   <img
+                style="width: 100%; height: 9.5rem"
+                src="../../assets/images/扶贫大图.png"
+                alt=""
+                @click="gotoFupin"
+              />
       <!-- <div class="swiper-box">
           <van-swipe :autoplay="3000" indicator-color="white">
             <van-swipe-item
@@ -93,10 +98,10 @@
         </span>
         <div v-if="!item.more">
           <img style="width: 85%" :src="item.url" alt="" srcset="" />
-          <div style="font-size: 12px">{{ item.title }}</div>
+          <div style="font-size: 12px;word-break: keep-all">{{ item.title }}</div>
         </div>
       </div>
-      <div style="width: 17%; margin-top: 1rem"></div>
+      <div v-for="(item,index) in new Array(5-areaShow.length%5)" :key="index" style="width: 17%; margin-top: 1rem"></div>
     </div>
     <div style="position: relative;display:none">
       <img src="../../assets/images/年货节.jpg" style="width: 100%" alt="" />
@@ -271,6 +276,7 @@
         </div>
       </div>
     </van-dialog>
+    <!-- <messageBox :show.sync="showDia" title="" content='' @comfirm  />  -->
   </div>
 </template>
 
@@ -278,13 +284,16 @@
 import recommend from "./recommend";
 import { Dialog } from "vant";
 import bus from "../../assets/js/eventBus";
+import messageBox from "./message";
 export default {
   name: "fupin",
   components: {
     recommend,
+    messageBox
   },
   data() {
     return {
+      showDia:false,
       tempString: "",
       Time: null,
       labelName: "",
@@ -293,6 +302,7 @@ export default {
       labelList: [],
       labelcommdyList: [],
       areaShow: [
+        { title: "消费扶贫馆", url: require("../../assets/扶贫123.png"),func:this.gotoFupin },
         { title: "长沙市", url: require("../../assets/1长沙市.jpg") },
         { title: "株洲市", url: require("../../assets/2株洲市.jpg") },
         { title: "湘潭市", url: require("../../assets/2湘潭市.jpg") },
@@ -416,7 +426,14 @@ export default {
       });
   },
   methods: {
+    gotoFupin(){
+     window.open('http://hnxxfp.cocsaas.com/pcShop#/home')
+    },
     gotoDetail(item, place = true) {
+      if(item.func){
+        item.func();
+        return;
+      }
       if (item.hideFlag) {
         Dialog.alert({
           className: "hhhhh",
