@@ -37,6 +37,7 @@ import giftBag from '@/components/index/giftBag'
 import temporary from '@/components/temporary/temporary'
 import go1 from '@/components/temporary/1go'
 import go5 from '@/components/temporary/5go'
+import test from '@/components/index/test'
 Vue.use(Router)
 
 export default new Router({
@@ -66,7 +67,8 @@ export default new Router({
           path: '/navContainer/fupin',
           name: 'fupin',
           component: fupin
-        },   {
+        },  
+         {
           path: '/navContainer/video',
           name: 'video',
           component: video
@@ -81,11 +83,7 @@ export default new Router({
           name: 'personal',
           component: personal
         },
-        {
-          path: '/navContainer/giftBag',
-          name: 'giftBag',
-          component: giftBag
-        },
+     
         {
           path: '/productList',
           name: 'productList',
@@ -224,6 +222,16 @@ export default new Router({
       path: '/fast',
       name: 'fast',
       component: fastVue
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: test
+    },
+    {
+      path: '/giftBag',
+      name: 'giftBag',
+      component: giftBag
     },
   ]
 })

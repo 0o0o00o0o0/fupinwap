@@ -96,6 +96,7 @@ export default {
     this.id = this.$route.query.id || 0;
     this.type = this.$route.query.type || "bag";
   },
+  
   methods: {
     onClickLeft() {
       this.$router.go(-1);
@@ -207,10 +208,10 @@ export default {
         .catch(function(error) {});
     },
     mygets() {
-      var redirect_urls = encodeURIComponent(
+      let redirect_urls = encodeURIComponent(
         "http://wap.chhtf.com/#/faceValueItem"
       );
-      var urls =
+      let urls =
         "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx93b723928c7e335b&redirect_uri=" +
         redirect_urls +
         "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";

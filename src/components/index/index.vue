@@ -78,7 +78,7 @@
         v-show="!labelcommdyList.length"
         style="padding: 100px 0; box-sizing: border-box"
       >
-        暂无商品...
+        正在补充助农产品...
       </div>
       <div v-show="labelcommdyList.length" class="labelCommidyList">
         <div

@@ -26,7 +26,7 @@
       </div>
     </div>
     <div v-show="!labelcommdyList.length" style="margin: 100px 0">
-      暂无商品...
+      正在补充助农产品...
     </div>
     <div v-show="labelcommdyList.length" class="labelCommidyList">
       <div
@@ -34,7 +34,7 @@
         :key="item.id + index + item.title"
         class="labelCommidy-item"
         style=""
-        @click="goToProductDetail(item.id)"
+        @click="goToProductDetail(item)"
       >
         <img style="width: 100%; height: 11.5rem" :src="item.url" alt="" />
         <div
@@ -123,16 +123,35 @@ export default {
             price: it.displayPrice,
             originPrice: it.originPrice,
             specificationName: it.specificationName,
+            stock: it.stock,
           }));
         }
       });
   },
   methods: {
-    goToProductDetail(id) {
-      this.$router.push({
-        name: "productDetail",
-        query: { productId: id, orderType: this.$route.query.orderType,phone:this.$route.query.phone },
-      });
+    goToProductDetail(item) {
+      if (
+        item.stock ||
+        (this.$route.query.orderType && this.$route.query.orderType != 3) ||
+        !this.$route.query.orderType
+      ) {
+        this.$router.push({
+          name: "productDetail",
+          query: {
+            productId: item.id,
+            orderType: this.$route.query.orderType,
+            phone: this.$route.query.phone,
+          },
+        });
+      } else {
+        if (this.$route.query.orderType == 3) {
+          {
+            this.$dialog.alert({
+              message: "本档活动礼包已领完",
+            });
+          }
+        }
+      }
     },
   },
 };

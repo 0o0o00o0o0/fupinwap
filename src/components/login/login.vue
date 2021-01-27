@@ -76,8 +76,8 @@ export default {
   },
   methods:{
     mygets() {
-      var redirect_urls= encodeURIComponent("http://wap.chhtf.com/#/navContainer/login");
-      var urls = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx93b723928c7e335b&redirect_uri="
+      let redirect_urls= encodeURIComponent("http://wap.chhtf.com/#/navContainer/login");
+      let urls = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx93b723928c7e335b&redirect_uri="
             +redirect_urls+"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
       window.location.href = urls;
     },

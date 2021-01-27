@@ -12,82 +12,81 @@ export default {
   data() {
     return { code: "", openId: "" };
   },
-  mounted: function() {
-    this.openId = localStorage.getItem("openId");
-    this.openId = this.openId == "null" ? null : this.openId;
-    this.openId = this.openId == "undefined" ? undefined : this.openId;
-
-    if (!this.openId) {
-      this.code = this.getQueryString("code");
-      if (this.$route.path === "/active" || this.$route.path === "/fast") {
-        return;
-      }
-      if (this.code) {
-        // this.getOpenId();
-      } else {
-        // this.mygets();
-      }
-    }
+  mounted: function () {
+    // this.openId = localStorage.getItem("openId");
+    // this.openId = this.openId == "null" ? null : this.openId;
+    // this.openId = this.openId == "undefined" ? undefined : this.openId;
+    // if (!this.openId) {
+    //   this.code = this.getQueryString("code");
+    //   if (this.$route.path === "/active" || this.$route.path === "/fast") {
+    //     return;
+    //   }
+    //   if (this.code) {1
+    //     this.getOpenId();
+    //   } else {
+    //     this.mygets();
+    //   }
+    // }
   },
   methods: {
-    mygets() {
-      var redirect_urls = encodeURIComponent(
-        "http://wap.chhtf.com/#/" + this.$route.path
-      );
-      var urls =
-        "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx93b723928c7e335b&redirect_uri=" +
-        redirect_urls +
-        "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
-      window.location.href = urls;
-    },
-    getQueryString(name) {
-      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-      var r = window.location.search.substr(1).match(reg);
-      if (r != null) return unescape(r[2]);
-      return null;
-    },
-    getOpenId() {
-      var self = this;
-      var params = {};
-      params.code = this.code;
-      self.$axios
-        .post({
-          baseURL: "",
-          url: self.API_KEY.URL_GET_OPENID,
-          data: params,
-          needLoading: false
-        })
-        .then(function(json) {
-          localStorage.setItem("openId", json.data.openid);
-          self.openId = json.data.openid;
-          if (sessionStorage.getItem("TARGET_PAGE_INFO")) {
-            self.pageName =
-              JSON.parse(sessionStorage.getItem("TARGET_PAGE_INFO")).name ||
-              null;
-            self.targetParams =
-              JSON.parse(sessionStorage.getItem("TARGET_PAGE_INFO")).params ||
-              null;
-          }
-          if (self.openId) {
-            if (self.pageName) {
-              if (self.targetParams) {
-                self.$router.push({
-                  name: self.pageName,
-                  query: self.targetParams
-                });
-              } else {
-                self.$router.push({ name: self.pageName });
-              }
-            } else {
-              self.$router.push({ name: "index" });
-            }
-          } else {
-            self.$router.push({ name: "error" });
-          }
-        })
-        .catch(function(error) {});
-    }
-  }
+    // mygets() {
+    //   let redirect_urls = encodeURIComponent(
+    //     "http://wap.chhtf.com/#/navContainer/fupin"
+    //   );
+    //   let urls =
+    //     "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx93b723928c7e335b&redirect_uri=" +
+    //     redirect_urls +
+    //     "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+    //   window.location.href = urls;
+    // },
+    // getQueryString(name) {
+    //   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    //   var r = window.location.search.substr(1).match(reg);
+    //   if (r != null) return unescape(r[2]);
+    //   return null;
+    // },
+    // getOpenId() {
+    //   var self = this;
+    //   var params = {};
+    //   params.code = this.code;
+    //   self.$axios
+    //     .post({
+    //       baseURL: "",
+    //       url: self.API_KEY.URL_GET_OPENID,
+    //       data: params,
+    //       needLoading: false
+    //     })
+    //     .then(function(json) {
+    //       localStorage.setItem("openId", json.data.openid);
+    //       self.openId = json.data.openid;
+    //       if (sessionStorage.getItem("TARGET_PAGE_INFO")) {
+    //         self.pageName =
+    //           JSON.parse(sessionStorage.getItem("TARGET_PAGE_INFO")).name ||
+    //           null;
+    //         self.targetParams =
+    //           JSON.parse(sessionStorage.getItem("TARGET_PAGE_INFO")).params ||
+    //           null;
+    //       }
+    //       if (self.openId) {
+    //         if (self.pageName) {
+    //           if (self.targetParams) {
+    //             self.$router.push({
+    //               name: self.pageName,
+    //               query: self.targetParams
+    //             });
+    //           } else {
+    //             self.$router.push({ name: self.pageName });
+    //           }
+    //         } else {
+    //           self.$router.push({ name: "index" });
+    //         }
+    //       } else {
+    //         self.$router.push({ name: "error" });
+    //       }
+    //     })
+    //     .catch(function(error) {});
+    // }
+  },
 };
 </script>
 
@@ -119,7 +118,7 @@ body {
 .slide-right-enter {
   opacity: 0;
 }
-.hhhhh .van-dialog__message{
-  font-size: 16px
+.hhhhh .van-dialog__message {
+  font-size: 16px;
 }
 </style>

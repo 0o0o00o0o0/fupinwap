@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="padding-bottom: 50px; position: relative">
+    <div style=" position: relative;width:100%;height:100%">
       <img
         style="width: 100%"
         src="../../assets/images/年货礼包.jpg"
@@ -12,9 +12,20 @@
         style="
           position: absolute;
           width: 50%;
-          bottom: calc(5% + 50px);
+          bottom: calc(5% + 5px);
           left: 24%;
           height: 7%;
+          opacity: 0;
+        "
+      ></button>
+      <button
+        @click="show = true"
+        style="
+          position: absolute;
+          width: 50%;
+          bottom: calc(21% + 5px);
+          left: 24%;
+          height: 4%;
           opacity: 0;
         "
       ></button>
@@ -27,6 +38,9 @@
       @confirm="confirm"
       @sendMessage="sendMessage"
     />
+    <van-dialog v-model="show">
+      <img style="width: 100%" src="../../assets/images/detail.jpg" alt="" />
+    </van-dialog>
   </div>
 </template>
 <script>
@@ -40,6 +54,7 @@ export default {
     return {
       phone: "",
       code: "",
+      show: false,
       showDia: false,
       sendMessageFlag: false,
       reTry: 60,
@@ -51,7 +66,7 @@ export default {
     confirm({ phone, code }) {
       this.$axios
         .post({
-          url: "/giftlist/checkPhoneAndCode",
+          url: "/giftlist/checkGiftTypePhoneAndCode",
           data: {
             phone: phone,
             code: code,
@@ -65,15 +80,18 @@ export default {
               name: "comList",
               query: {
                 phone: phone,
-                label: this.giftType,
+                label: res.data.checkFlag,
                 orderType: 3,
               },
+            });
+          }else{
+             this.$dialog.alert({
+              message: "验证码错误或者失效",
             });
           }
         });
     },
-    sendMessage({phone}) {
-   
+    sendMessage({ phone }) {
       this.$axios
         .post({
           url: "/giftlist/getGiftTypeByPhone",
@@ -86,7 +104,7 @@ export default {
           if (!res.data.giftType) {
             this.$refs.ref.cancel();
             this.$dialog.alert({
-              message: "号码无资格或者资格已领取",
+              message: "您已领取过该礼包",
             });
             return;
           }
@@ -97,10 +115,9 @@ export default {
 };
 </script>
 <style  scoped>
-/deep/ .van-dialog {
-  top: 25%;
-}
+
 /deep/ .van-field__label {
   max-width: 77px !important;
 }
+
 </style>

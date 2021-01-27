@@ -98,7 +98,7 @@
         </span>
         <div v-if="!item.more">
           <img style="width: 85%" :src="item.url" alt="" srcset="" />
-          <div style="font-size: 12px;word-break: keep-all">
+          <div style="font-size: 12px; word-break: keep-all">
             {{ item.title }}
           </div>
         </div>
@@ -109,21 +109,22 @@
         style="width: 17%; margin-top: 1rem"
       ></div>
     </div>
-    <div style="position: relative;display:none">
-      <img src="../../assets/images/年货节.jpg" style="width: 100%" alt="" />
+    <div style="position: relative">
+      <img src="../../assets/2021110年货.png" style="width: 100%" alt="" />
+
       <button
         @click="$router.push({ name: 'giftBag' })"
         style="
           width: 92%;
-          height: 52%;
+          height: 75%;
           left: 4%;
-          top: 0;
+          top: 25%;
           position: absolute;
           opacity: 0;
         "
       ></button>
-      <button
-        @click="gotoDetail({ title: '五折专区', orderType: 2 }, false)"
+      <!-- <button
+        @click="$router.push('/go5')"
         style="
           width: 45%;
           height: 40%;
@@ -134,7 +135,7 @@
         "
       ></button>
       <button
-        @click="gotoDetail({ title: '1元购/10元购', orderType: 1 }, false)"
+        @click="$router.push('/go1')"
         style="
           width: 45%;
           height: 40%;
@@ -143,7 +144,7 @@
           position: absolute;
           opacity: 0;
         "
-      ></button>
+      ></button> -->
     </div>
     <!-- <img src="../../assets/11.jpg" style="display:block;width:60%;margin:5px auto;height:45px" alt="">
     <div style="display: flex; height: 7rem">
@@ -191,7 +192,7 @@
       <div v-show="presellTimeStr">({{ tempString }}{{ presellTimeStr }})</div>
     </div>
     <div v-show="!labelcommdyList.length" style="margin: 100px 0">
-      暂无商品...
+      正在补充助农产品...
     </div>
     <div v-show="labelcommdyList.length" class="labelCommidyList">
       <div
@@ -282,6 +283,35 @@
         </div>
       </div>
     </van-dialog>
+    <van-dialog
+      v-model="showGotoWeApp"
+      :title="
+        lowVersion
+          ? '当前微信版本过低，请升级.'
+          : '是否继续前往湖南省消费扶贫公共服务平台？'
+      "
+      :close-on-click-overlay="true"
+      :show-confirm-button="false"
+    >
+      <div style="padding: 10px">
+        <button
+          @click="showGotoWeApp = false"
+          style="width: 80px; height: 30px; margin: 0 10px"
+        >
+          {{ lowVersion ? "确定" : "取消" }}
+        </button>
+        <wx-open-launch-weapp
+          username="gh_ee5c1f0c4601"
+          path="/pages/index/index.html"
+        >
+          <script type="text/wxtag-template">
+            <!-- <style>.btn { padding: 12px}</style> -->
+            <button class="btn" style="width:80px;height:30px;background:#07c160;color:white;border:0;outline:0">确定</button>
+          </script>
+        </wx-open-launch-weapp>
+      </div>
+    </van-dialog>
+    <!-- <messageBox :show.sync="showDia" title="" content='' @comfirm  />  -->
     <messageBox
       ref="ref"
       :show.sync="showDia"
@@ -291,6 +321,7 @@
       @confirm="messageConfirm"
       @sendMessage="sendMessage"
     />
+    <van-dialog :title="lowVersionTitle" v-model="showLowVersion"> </van-dialog>
   </div>
 </template>
 
@@ -303,11 +334,13 @@ export default {
   name: "fupin",
   components: {
     recommend,
-    messageBox
+    messageBox,
   },
   data() {
     return {
-      enterAuth: "",
+      showLowVersion: false,
+      lowVersionTitle: "",
+      showGotoWeApp: false,
       showDia: false,
       tempString: "",
       Time: null,
@@ -320,7 +353,7 @@ export default {
         {
           title: "消费扶贫馆",
           url: require("../../assets/扶贫123.png"),
-          func: this.gotoFupin
+          func: this.gotoFupin,
         },
         { title: "长沙市", url: require("../../assets/1长沙市.jpg") },
         { title: "株洲市", url: require("../../assets/2株洲市.jpg") },
@@ -335,23 +368,24 @@ export default {
         { title: "永州市", url: require("../../assets/10永州市.jpg") },
         { title: "怀化市", url: require("../../assets/11怀化市.jpg") },
         // { title: "娄底市", url: require("../../assets/12娄底市.jpg") },
-        { title: "湘西州", url: require("../../assets/13湘西州.jpg") }
+        { title: "湘西州", url: require("../../assets/13湘西州.jpg") },
       ],
       showHideArea: false,
       areaHide: [],
+      lowVersion: false,
       swipes: [
         {
           url: require("../../assets/images/csnyyh.jpg"),
-          id: 20
+          id: 20,
         },
         {
           url: require("../../assets/images/larou.jpg"),
-          id: 1000
+          id: 1000,
         },
         {
           url: require("../../assets/images/jidan.jpg"),
-          id: 2000
-        }
+          id: 2000,
+        },
       ],
       classi_icons: [
         // {
@@ -362,30 +396,30 @@ export default {
         {
           url: require("../../assets/images/组23.png"),
           title: "团购专享",
-          id: 21
+          id: 21,
         },
         {
           url: require("../../assets/images/组24.png"),
           title: "臻品抢购",
-          id: 31
+          id: 31,
         },
         {
           url: require("../../assets/images/组25.png"),
           title: "扶贫预售",
-          id: 41
+          id: 41,
         },
         {
           url: require("../../assets/images/组27.png"),
           title: "助农热卖",
-          id: 51
-        }
+          id: 51,
+        },
       ],
       fupinArea: [],
       zpqgArr: [],
-      fpysArr: []
+      fpysArr: [],
     };
   },
-  mounted: function() {
+  mounted: function () {
     this.openId = localStorage.getItem("openId");
     this.openId = this.openId == "null" ? null : this.openId;
     this.openId = this.openId == "undefined" ? undefined : this.openId;
@@ -403,9 +437,9 @@ export default {
       .post({
         url: "/homepageinfo/findByPage",
         data: { homepageInfo: {}, page: { start: 1, count: 100 } },
-        needLoading: true
+        needLoading: true,
       })
-      .then(res => {
+      .then((res) => {
         if (res.success) {
           const data = res.data.list;
           for (let i = 0; i < data.length; i++) {
@@ -417,8 +451,8 @@ export default {
                   id: n.id,
                   title: n.relativeContent,
                   hideFlag: n.hideFlag,
-                  tempString: n.tempString
-                }
+                  tempString: n.tempString,
+                },
               ];
             }
             // if (
@@ -443,22 +477,96 @@ export default {
           this.changeTabs(undefined, this.labelName);
         }
       });
+
+    var wechatInfo = navigator.userAgent.match(/MicroMessenger\/([\d\.]+)/i);
+    // Android 5.0及以上
+    var ua = navigator.userAgent.toLowerCase();
+    console.log(wechatInfo);
+    if (!wechatInfo) {
+      // alert("仅支持微信") ;
+      // this.$toast.fail('仅支持微信')
+    } else if (wechatInfo[1] < "7.0.12") {
+      // alert("微信版本要求7.0.12及以上版本") ;
+      this.lowVersion = true;
+      // this.$toast('微信版本要求7.0.12及以上版本')
+      this.lowVersionTitle = "微信版本要求7.0.12及以上版本";
+    } else if (/android/i.test(navigator.userAgent)) {
+      var test = /android\s([\w.]+)/; //IE
+      var match = test.exec(ua);
+      var version = match[1].split(".")[0];
+      console.log(version);
+      if (version < 5) {
+        // alert('Android系统要求5.0及以上版本');
+        // this.$toast('Android系统要求5.0及以上版本')
+        this.lowVersion = true;
+        this.lowVersionTitle = "Android系统要求5.0及以上版本";
+      }
+    } else if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+      var test = /os\s([\w_]+)/; //IE
+      var match = test.exec(ua);
+      // var version = match[1].split("_")[0];
+      var version = match[1].split("_")[0] + "." + match[1].split("_")[1];
+      console.log(version);
+      if (version < 10.4) {
+        // alert('ios系统要求10.3及以上版本');
+        // this.$toast('ios系统要求10.3及以上版本')
+        this.lowVersion = true;
+        this.lowVersionTitle = "ios系统要求10.3及以上版本";
+      }
+      // document.write("This is iOS " + version + " browser."); //这是iOS平台下浏览器
+    }
+    console.log("是否是低版本？", this.lowVersion);
+  },
+  created() {
+    const oScript = document.createElement("script");
+    oScript.type = "text/javascript";
+    oScript.src = "https://res2.wx.qq.com/open/js/jweixin-1.6.0.js";
+    oScript.onload = this.wxmini;
+    document.body.appendChild(oScript);
   },
   methods: {
+    wxmini() {
+      // 获取密钥
+      this.$axios
+        .post({
+          url: "/getWinXinShareEntity",
+          data: {
+            sharedUrl: encodeURIComponent(window.location.href.split("#")[0]),
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          let { appId, noncestr, signature, timestamp } = res.data.record;
+          wx.config({
+            // eslint-disable-line
+            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印
+            appId: "wx93b723928c7e335b", // 必填，公众号的唯一标识
+            timestamp, // 必填，生成签名的时间戳
+            nonceStr: noncestr, // 必填，生成签名的随机串
+            signature, // 必填，签名
+            jsApiList: ["onMenuShareTimeline"], // 必填，需要使用的JS接口列表
+            openTagList: ["wx-open-launch-weapp"], // 可选，需要使用的开放标签列表，例如['wx-open-launch-app']
+          });
+          /* eslint-disable */
+          wx.ready(function () {
+            console.log("ready");
+          });
+        });
+    },
     sendMessage({ phone }) {
       this.$axios
         .post({
           url: "/giftlist/getEnterAuthByPhone",
           data: {
-            phone
+            phone,
           },
-          needLoading: false
+          needLoading: false,
         })
-        .then(res => {
+        .then((res) => {
           if (!res.data.enterAuth) {
             this.$refs.ref.cancel();
             this.$dialog.alert({
-              message: "号码无资格或者无权限"
+              message: "号码无资格或者无权限",
             });
             return;
           }
@@ -472,20 +580,28 @@ export default {
           url: "/giftlist/checkPhoneAndCode",
           data: {
             phone,
-            code
+            code,
           },
-          needLoading: false
+          needLoading: false,
         })
-        .then(res => {
+        .then((res) => {
           if (res.data.checkFlag) {
-            window.open(this.enterAuth);
+            // window.open(this.enterAuth);
+            this.showDia = false;
+            this.showGotoWeApp = true;
           }
         });
     },
     /////
     gotoFupin() {
+      if (this.lowVersion) {
+        console.log(999);
+        this.showLowVersion = true;
+        return;
+      }
       this.showDia = true;
     },
+
     gotoDetail(item, place = true) {
       if (item.func) {
         item.func();
@@ -494,7 +610,7 @@ export default {
       if (item.hideFlag) {
         Dialog.alert({
           className: "hhhhh",
-          message: "活动暂未开始，敬请期待！"
+          message: "活动暂未开始，敬请期待！",
         }).then(() => {
           // on close
         });
@@ -506,15 +622,15 @@ export default {
           type: place ? "place" : "",
           label: item.title,
           tempString: item.tempString,
-          orderType: item.orderType || 0
-        }
+          orderType: item.orderType || 0,
+        },
       });
     },
     mygets() {
-      var redirect_urls = encodeURIComponent(
+      let redirect_urls = encodeURIComponent(
         "http://wap.chhtf.com/#/navContainer/fupin"
       );
-      var urls =
+      let urls =
         "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx93b723928c7e335b&redirect_uri=" +
         redirect_urls +
         "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
@@ -535,9 +651,9 @@ export default {
           baseURL: "",
           url: self.API_KEY.URL_GET_OPENID,
           data: params,
-          needLoading: false
+          needLoading: false,
         })
-        .then(function(json) {
+        .then(function (json) {
           localStorage.setItem("openId", json.data.openid);
           self.openId = json.data.openid;
           if (sessionStorage.getItem("TARGET_PAGE_INFO")) {
@@ -565,7 +681,7 @@ export default {
             self.$router.push({ name: "error" });
           }
         })
-        .catch(function(error) {});
+        .catch(function (error) {});
     },
     changeTime() {
       this.Time = setTimeout(() => {
@@ -598,26 +714,26 @@ export default {
           url: "/commodityinfo/findByPage",
           data: {
             page: { start: 1, count: 100 },
-            commodityInfo: { labelNamelist: this.labelName }
+            commodityInfo: { labelNamelist: this.labelName },
           },
-          needLoading: true
+          needLoading: true,
         })
-        .then(res => {
+        .then((res) => {
           if (res.success) {
             console.log(res.data.list);
-            this.labelcommdyList = res.data.list.map(it => ({
+            this.labelcommdyList = res.data.list.map((it) => ({
               id: it.id,
               url: this.API_KEY.IMG_SERVER + it.coverImage,
               title: it.commodityTitle,
               price: it.displayPrice,
               originPrice: it.originPrice,
               specificationName: it.specificationName,
-              showPre: it.presellFlag
+              showPre: it.presellFlag,
             }));
           }
         });
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -2,8 +2,19 @@
   <div>
     <img class="header" src="../../assets/images/active-header.png" alt="" />
     <div style="position: relative">
-      <img src="../../assets/images/年货节.jpg" style="width: 100%" alt="" />
-     <button
+      <img src="../../assets/2021110年货.png" style="width: 100%" alt="" />
+            <button
+        @click="$router.push({ name: 'giftBag' })"
+        style="
+          width: 92%;
+          height: 75%;
+          left: 4%;
+          top: 25%;
+          position: absolute;
+          opacity: 0;
+        "
+      ></button>
+      <!-- <button
         @click="$router.push({ name: 'fupin' })"
         style="
           width: 92%;
@@ -13,8 +24,8 @@
           position: absolute;
           opacity: 0;
         "
-      ></button>
-      <button
+      ></button> -->
+      <!-- <button
         @click="$router.push({ name: 'giftBag' })"
         style="
           width: 92%;
@@ -24,8 +35,8 @@
           position: absolute;
           opacity: 0;
         "
-      ></button>
-      <button
+      ></button> -->
+      <!-- <button
         @click="$router.push('/go5')"
         style="
           width: 45%;
@@ -46,7 +57,7 @@
           position: absolute;
           opacity: 0;
         "
-      ></button>
+      ></button> -->
     </div>
   </div>
 </template>

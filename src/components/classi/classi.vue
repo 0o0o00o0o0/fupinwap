@@ -40,7 +40,7 @@
         <div
           v-show="!commodityList.length"
           style="margin-top:100px"
-        >暂无商品...</div>
+        >正在补充助农产品...</div>
         <div
           v-show="commodityList.length"
           v-for="(item,index) in commodityList"

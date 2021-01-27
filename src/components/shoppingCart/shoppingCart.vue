@@ -121,21 +121,21 @@ export default {
     };
   },
   mounted: function() {
-    this.openId = localStorage.getItem("openId");
-    this.storeNumers = JSON.parse(localStorage.getItem("storeNum") || "{}");
-    this.openId = this.openId == 'null' ? null:this.openId;
-    this.openId = this.openId == 'undefined' ? undefined:this.openId;
-    if(!this.openId){
-        /*sessionStorage.setItem('TARGET_PAGE_INFO',JSON.stringify({'name':'shoppingCart'}));
-        window.location.href = 'https://pay.chhtf.com/store/redirectwx';
-        return;*/
-        this.code = this.getQueryString('code');
-        if(this.code){
-          this.getOpenId();
-        }else{
-          this.mygets();
-        }
-    }
+    // this.openId = localStorage.getItem("openId");
+    // this.storeNumers = JSON.parse(localStorage.getItem("storeNum") || "{}");
+    // this.openId = this.openId == 'null' ? null:this.openId;
+    // this.openId = this.openId == 'undefined' ? undefined:this.openId;
+    // if(!this.openId){
+    //     /*sessionStorage.setItem('TARGET_PAGE_INFO',JSON.stringify({'name':'shoppingCart'}));
+    //     window.location.href = 'https://pay.chhtf.com/store/redirectwx';
+    //     return;*/
+    //     this.code = this.getQueryString('code');
+    //     if(this.code){
+    //       this.getOpenId();
+    //     }else{
+    //       this.mygets();
+    //     }
+    // }
     this.getCartData();
   },
   watch: {
@@ -280,8 +280,8 @@ export default {
         });
     },
     mygets() {
-      var redirect_urls= encodeURIComponent("http://wap.chhtf.com/#/navContainer/shoppingCart");
-      var urls = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx93b723928c7e335b&redirect_uri="
+      let redirect_urls= encodeURIComponent("http://wap.chhtf.com/#/navContainer/shoppingCart");
+      let urls = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx93b723928c7e335b&redirect_uri="
             +redirect_urls+"&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
       window.location.href = urls;
     },
